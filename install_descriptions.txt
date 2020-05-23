@@ -1,0 +1,6 @@
+redis-server
+------------
+Download from: http://download.redis.io/redis-stable.tar.gz
+tar xvzf file.tar.gz
+cd redis-stable
+make
