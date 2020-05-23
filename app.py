@@ -37,12 +37,13 @@ def count_and_save_words(url):
     # text processing
     raw = BeautifulSoup(r.text).get_text()
     nltk.data.path.append('./nltk_data/')  # set the path
-    tokens = ntlk.word_tokenize(raw)
+    tokens = nltk.word_tokenize(raw)
     text = nltk.Text(tokens)
 
     # remove punctuation, count raw words
     nonPunct = re.compile('.*[A-Za-z].*')
     raw_words = [w for w in text if nonPunct.match(w)]
+    raw_word_count = Counter(raw_words)
 
     # stop words
     no_stop_words = [w for w in raw_words if w.lower() not in stops]
@@ -72,7 +73,7 @@ def index():
 
         # get url that the person has entered
         url = request.form['url']
-        if not url[8].startswith(('https://', 'http://')):
+        if not url[:8].startswith(('https://', 'http://')):
             url = 'http://' + url
         job = q.enqueue_call(
             func=count_and_save_words,
