@@ -37,17 +37,17 @@ def count_and_save_words(url):
         return {"error": errors}
 
     # text processing
-    raw = BeautifulSoup(r.text).get_text()
+    raw = BeautifulSoup(r.text, features="html.parser").get_text()
     nltk.data.path.append('./nltk_data/')  # set the path
     tokens = nltk.word_tokenize(raw)
     text = nltk.Text(tokens)
-    print('text:', text)
+    # print('text:', text)
 
     # remove punctuation, count raw words
     nonPunct = re.compile('.*[A-Za-z].*')
     raw_words = [w for w in text if nonPunct.match(w)]
     raw_word_count = Counter(raw_words)
-    print('raw_word_count:', raw_word_count)
+    # print('raw_word_count:', raw_word_count)
 
     # stop words
     no_stop_words = [w for w in raw_words if w.lower() not in stops]
@@ -60,8 +60,8 @@ def count_and_save_words(url):
             result_all=raw_word_count,
             result_no_stop_words=no_stop_words_count
         )
-        print('result...')
-        print(result)
+        # print('result...')
+        # print(result)
         db.session.add(result)
         db.session.commit()
         return result.id
@@ -93,11 +93,11 @@ def index():
 def get_results(job_key):
 
     job = Job.fetch(job_key, connection=conn)
-    print(job)
+    # print(job)
 
     if job.is_finished:
         result = Result.query.filter_by(id=job.result).first()
-        print(result)
+        # print(result)
         results = sorted(
             result.result_no_stop_words.items(),
             key=operator.itemgetter(1),
@@ -105,6 +105,7 @@ def get_results(job_key):
         )[:10]
         return jsonify(results)
     else:
+        # print(job.is_finished)
         return "Nay!", 202
 
 
