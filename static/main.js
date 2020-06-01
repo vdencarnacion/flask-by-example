@@ -3,7 +3,15 @@
 
   angular.module('WordcountApp', [])
 
-  .controller('WordcountController',['$scope', '$log', '$http',
+  /*.controller('WordcountController', ['$scope', '$log',
+    function($scope, $log) {
+      $scope.getResults = function() {
+        $log.log("test");
+      };
+    }
+  ]);*/
+
+  .controller('WordcountController', ['$scope', '$log', '$http',
     function($scope, $log, $http) {
       $scope.getResults = function() {
 
@@ -13,8 +21,8 @@
         var userInput = $scope.url;
 
         // fire the API request
-        $http.post('/start', {'url': userInput}).
-          success(function(results){
+        $http.post('/start', {"url": userInput}).
+          success(function(results) {
             $log.log(results);
           }).
           error(function(error) {
