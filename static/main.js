@@ -3,16 +3,9 @@
 
   angular.module('WordcountApp', [])
 
-  /*.controller('WordcountController', ['$scope', '$log',
-    function($scope, $log) {
-      $scope.getResults = function() {
-        $log.log("test");
-      };
-    }
-  ]);*/
-
   .controller('WordcountController', ['$scope', '$log', '$http', '$timeout',
     function($scope, $log, $http, $timeout) {
+  
       $scope.getResults = function() {
         $log.log("test");
 

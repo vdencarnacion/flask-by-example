@@ -3,11 +3,15 @@
   <head>
     <title>Wordcount</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="{{ url_for('static', filename='main.js') }}"></script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <style>
       .container {
         max-width: 1000px;
@@ -31,17 +35,28 @@
         <div class="col-sm-5 col-sm-offset-1">
           <h2>Frequencies</h2>
           <br>
-          {% raw %}
           <div id="results">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Word</th>
+                  <th>Count</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% raw %}
+                <tr ng-repeat="element in wordcounts">
 
-              {{wordcounts}}
+                  <td>{{ element[0] }}</td>
+                  <td>{{ element[1] }}</td>
 
+                </tr>
+              {% endraw %}
+              </tbody>
+            </table>
           </div>
-          {% endraw %} 
         </div>
       </div>
     </div>
-    <script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   </body>
 </html>
