@@ -35,6 +35,7 @@
             </button>
             {% endraw %}
           </form>
+
         </div>
         <div class="col-sm-5 col-sm-offset-1">
           <h2>Frequencies</h2>
@@ -59,6 +60,8 @@
               </tbody>
             </table>
           </div>
+          <img class="col-sm-3 col-sm-offset-4" src="{{ url_for('static', 
+            filename='spinner.gif') }}" ng-show="loading">
         </div>
       </div>
     </div>

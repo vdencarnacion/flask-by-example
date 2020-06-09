@@ -7,6 +7,7 @@
     function($scope, $log, $http, $timeout) {
       $scope.submitButtonText = 'Submit';
       $scope.loading = false;
+      $scope.urlerror = false;
   
       $scope.getResults = function() {
         $log.log("test");
@@ -20,6 +21,7 @@
         $http.post('/start', {"url": userInput}).
           success(function(results) {
             // $log.log('success-start');
+            $scope.urlerror = false;
             $log.log(results);
             getWordCount(results);
             $scope.wordcounts = null;
