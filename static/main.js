@@ -53,8 +53,15 @@
                 // continue to call the poller() function every 2 seconds
                 // until the timeout is cancelled
                 timeout = $timeout(poller, 2000);
+              }).
+              error(function(error) {
+                $log.log(error);
+                $scope.loading = false;
+                $scope.submitButtonText = "Submit";
+                $scope.urlerror = true;
               });
           };
+
           poller();
         };
     }
