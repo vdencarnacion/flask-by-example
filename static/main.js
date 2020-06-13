@@ -76,6 +76,7 @@
         template: '<div id="chart"></div>',
         link: function (scope) {
           scope.$watch('wordcounts', function() {
+            d3.select('#chart').selectAll('*').remove();
             var data = scope.wordcounts;
             for (var word in data) {
               var key = data[word][0];
@@ -83,7 +84,7 @@
               d3.select('#chart')
                 .append('div')
                 .selectAll('div')
-                .data(word[0])
+                .data(word)
                 .enter()
                 .append('div')
                 .style('width', function() {
