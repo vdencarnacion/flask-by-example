@@ -5,7 +5,10 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/main.css">
 
+    <!-- scripts -->
+    <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
@@ -42,7 +45,7 @@
             <span>There was an error submitting your URL.<br>
             Please check to make sure it is valid before trying again.</span>
           </div>
-        </div>
+        </div> <!--1st col-->
         <div class="col-sm-5 col-sm-offset-1">
           <h2>Frequencies</h2>
           <br>
@@ -68,8 +71,10 @@
           </div>
           <img class="col-sm-3 col-sm-offset-4" src="{{ url_for('static', 
             filename='spinner.gif') }}" ng-show="loading">
-        </div>
-      </div>
-    </div>
+        </div> <!--2nd col-->
+      </div> <!--row-->
+      <br>
+      <word-count-chart data="wordcounts"></word-count-chart>
+    </div> <!--container-->
   </body>
 </html>
